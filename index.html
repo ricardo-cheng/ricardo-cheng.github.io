@@ -149,7 +149,32 @@
 </header>
     <div class="article-content">
         
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1>
+        <h1 id="Kurento-简介"><a href="#Kurento-简介" class="headerlink" title="Kurento 简介"></a>Kurento 简介</h1><blockquote>
+<p>Kurento 是一个 WebRTC 媒体服务器和一套客户端 API</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;Kurento 简化了对 WWW 和智能手机平台的高级视频应用的开发。Kurento 的功能包括视听流的群组通信，代码转换，录​​音，混音，广播和路由。</p>
+<p>&ensp;&ensp;&ensp;&ensp;Kurento 还提供涉及计算机视觉，视频索引，增强现实和语音分析的高级媒体处理能力。Kurento 模块化架构简化了第三方媒体处理算法（即语音识别，情感分析，人脸识别等）的集成，应用程序开发人员可以将其视为 Kurento 内置功能的其余部分。</p>
+<h1 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h1><blockquote>
+<p>KMS 是 Kurento Media Server 的缩写，它是 Kurento 的核心要素，负责媒体传输，处理，加载和录制</p>
+</blockquote>
+<p>KMS 基于 <a href="https://gstreamer.freedesktop.org/" target="_blank" rel="external">GStreamer</a> 的低级技术实现，以优化资源消耗。它提供以下功能：</p>
+<ol>
+<li>网络流式传输协议，包括 HTTP，<a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a> 和 <a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a></li>
+<li>支持媒体混合和媒体路由/调度的组通信（ <a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a> 和 <a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a> 功能）</li>
+<li>对计算机视觉和增强现实滤波器的通用支持</li>
+<li>媒体存储支持 WebM 和 MP4 的写入操作，并 以 GStreamer 支持的所有格式播放</li>
+<li>由 GStreamer 支持的任何编解码器之间的自动媒体转码，包括 VP8，H.264，H.263，AMR，OPUS，Speex，G.711 等</li>
+</ol>
+<h2 id="Media-Element"><a href="#Media-Element" class="headerlink" title="Media Element"></a>Media Element</h2><blockquote>
+<p>Media Element 是封装特定的媒体功能的模块</p>
+</blockquote>
+<h2 id="Media-Pipeline"><a href="#Media-Pipeline" class="headerlink" title="Media Pipeline"></a>Media Pipeline</h2><blockquote>
+<p>Media Pipeline 是一组 Media Element，其中由一个元素（源）产生的输出流被注入到一个或多个其他元素输入流中</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://doc-kurento.readthedocs.io/en/latest/index.html" target="_blank" rel="external">Kurento 官方文档</a></p>
+<h1 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h1><p><a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a>：多点会议单元<br><a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a>：选择性转发单元<br><a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a>：实时传输协议<br><a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a>：网页实时通讯<br><a href="https://webrtcglossary.com/ice/" target="_blank" rel="external">ICE</a>：交互式连接建立</p>
+<p>[8]<a href="https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png" target="_blank" rel="external">https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png</a></p>
+
         
         
         <p class="article-more-link">
