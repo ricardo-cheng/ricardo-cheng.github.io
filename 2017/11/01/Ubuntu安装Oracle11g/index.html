@@ -4,25 +4,21 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Ubuntu静态IP地址设置 | lincoln&#39;s blog</title>
+    <title>Ubuntu安装Oracle11g | lincoln&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="lincoln">
     
 
     
-    <meta name="description" content="Ubuntu14.04虚拟机静态IP设置做好了Ubuntu系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其">
-<meta name="keywords" content="Ubuntu,静态IP设置">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu静态IP地址设置">
-<meta property="og:url" content="http://yoursite.com/2017/09/27/Ubuntu静态IP地址设置/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安装Oracle11g">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/Ubuntu安装Oracle11g/index.html">
 <meta property="og:site_name" content="lincoln&#39;s blog">
-<meta property="og:description" content="Ubuntu14.04虚拟机静态IP设置做好了Ubuntu系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-01T08:52:35.000Z">
+<meta property="og:updated_time" content="2017-11-01T10:25:14.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu静态IP地址设置">
-<meta name="twitter:description" content="Ubuntu14.04虚拟机静态IP设置做好了Ubuntu系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其">
+<meta name="twitter:title" content="Ubuntu安装Oracle11g">
 
     
     <link rel="alternative" href="/atom.xml" title="lincoln&#39;s blog" type="application/atom+xml">
@@ -76,14 +72,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/27/Ubuntu静态IP地址设置/" title="Ubuntu静态IP地址设置" itemprop="url">Ubuntu静态IP地址设置</a>
+      <a href="/2017/11/01/Ubuntu安装Oracle11g/" title="Ubuntu安装Oracle11g" itemprop="url">Ubuntu安装Oracle11g</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="lincoln" target="_blank" itemprop="author">lincoln</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-27T09:12:41.000Z" itemprop="datePublished"> 发表于 2017-09-27</time>
+    <time datetime="2017-11-01T10:25:14.000Z" itemprop="datePublished"> 发表于 2017-11-01</time>
     
   </p>
 </header>
@@ -92,46 +88,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu14-04虚拟机静态IP设置"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu14.04虚拟机静态IP设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看Ubuntu网卡命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看Ubuntu网卡命令</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="Ubuntu14-04虚拟机静态IP设置"><a href="#Ubuntu14-04虚拟机静态IP设置" class="headerlink" title="Ubuntu14.04虚拟机静态IP设置"></a>Ubuntu14.04虚拟机静态IP设置</h1><p>做好了Ubuntu系统之后，配置静态IP废了不少周折，总结一下：</p>
-<h2 id="查看Ubuntu网卡命令"><a href="#查看Ubuntu网卡命令" class="headerlink" title="查看Ubuntu网卡命令"></a>查看Ubuntu网卡命令</h2><blockquote>
-<p>ifconfig -a</p>
-</blockquote>
-<p>在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传</p>
-<p>在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口）</p>
-<p>在服务器上 ifconfig 会只显示lo，这说明其他四块网卡没有被加载，执行命令：ifconfig em1 up 加载网卡<br> ifconfig em1 down 卸载网卡<br>加载网卡后，执行ifconfig 就会看到em1网卡被加载进来了，然后进行配置网卡</p>
-<p>在虚拟机和服务器配置是这样的： </p>
-<p>配置静态ip地址:<br>$ sudo vim /etc/network/interfaces<br>原有内容只有如下两行：</p>
-<p>auto lo<br>iface lo inet loopback<br>向末尾追加以下内容：</p>
-<p>auto eth0（em1）<br>iface eth0（em1） inet static<br>address 192.168.1.5  IP地址<br>gateway 192.168.1.1    网关<br>netmask 255.255.255.0  网络掩码<br>network 192.168.1.0 网络地址<br>broadcast 192.168.1.255  广播</p>
-<p>dns-nameservers 192.168.1.1 8.8.8.8   （服务器和虚拟机都是这样配置的）固定DNS域名服务</p>
-<p>如果多个dns：<br>dns-nameservers X.X.X.X  Y.Y.Y.Y  Z.Z.Z.Z</p>
-<p>设置固定DNS（域名服务，没有就不能解析域名，就不能上网，只能ping通 IP地址）</p>
-<p>设置固定DNS还有另外一种方法，有点麻烦</p>
-<p>另一种方法：<br>创建/修改下面的文件 sudo vim /etc/resolvconf/resolv.conf.d/base<br>添加下面内容：</p>
-<p>nameserver 8.8.8.8<br>nameserver 8.8.4.4 （解析域名的地址，可以用别的）</p>
-<p>修改好保存，然后执行：<br>resolvconf -u</p>
-<p>重启网络<br>$ sudo /etc/init.d/networking restart  或 sudo ifdown eth0（em1）&amp;&amp; sudo ifup eth0（em1）</p>
-<p>注意：如果Ubuntu系统采用的是desktop版，由于desktop版安装了NetworkManager，修改完interfaces文档中的内容后，不会生效。需要先修改 /etc/NetworkManager/NetworkManager.conf 文档中的managed参数，使之为true，并重启系统， 然后再修改 /etc/network/interfaces 文件，设置静态IP。这是桌面版和服务器版的不同之处</p>
-<p>最让我头疼的是这早就配置好了，服务器上就是ping不同局域网，而虚拟机上就能ping通，同样的配置让自己搞了一天，后来换一换服务器后面的网口，瞬间就好用了，多么简单的问题，有种欲哭无泪的感觉</p>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Ubuntu/">Ubuntu</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Ubuntu/">Ubuntu</a><a href="/tags/静态IP设置/">静态IP设置</a>
-  </div>
 
 </div>
 
@@ -139,7 +104,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/27/Ubuntu静态IP地址设置/" data-title="Ubuntu静态IP地址设置 | lincoln&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/11/01/Ubuntu安装Oracle11g/" data-title="Ubuntu安装Oracle11g | lincoln&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -152,19 +117,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/11/01/Ubuntu安装Oracle11g/" title="Ubuntu安装Oracle11g">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Ubuntu安装Oracle11g</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/09/22/openVidu入门篇/"  title="openVidu入门篇">
+<a href="/2017/09/27/Ubuntu静态IP地址设置/"  title="Ubuntu静态IP地址设置">
  <strong>下一篇：</strong><br/> 
- <span>openVidu入门篇
+ <span>Ubuntu静态IP地址设置
 </span>
 </a>
 </div>
@@ -180,7 +137,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu14-04虚拟机静态IP设置"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu14.04虚拟机静态IP设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看Ubuntu网卡命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看Ubuntu网卡命令</span></a></li></ol></li></ol>
+ 
  
   </div>
 
