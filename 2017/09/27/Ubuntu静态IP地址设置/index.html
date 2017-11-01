@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Kurento 入门篇 | lincoln&#39;s blog</title>
+    <title>Ubuntu静态IP地址设置 | lincoln&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="lincoln">
     
 
     
-    <meta name="description" content="Kurento 入门篇">
-<meta name="keywords" content="Kurento,WebSocket,WebRTC">
+    <meta name="description" content="Ubuntu14.04虚拟机静态IP设置做好了系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其他四块网卡没">
+<meta name="keywords" content="Ubuntu,静态IP设置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kurento 入门篇">
-<meta property="og:url" content="http://yoursite.com/2017/09/22/Kurento/index.html">
+<meta property="og:title" content="Ubuntu静态IP地址设置">
+<meta property="og:url" content="http://yoursite.com/2017/09/27/Ubuntu静态IP地址设置/index.html">
 <meta property="og:site_name" content="lincoln&#39;s blog">
-<meta property="og:description" content="Kurento 入门篇">
+<meta property="og:description" content="Ubuntu14.04虚拟机静态IP设置做好了系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其他四块网卡没">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-27T06:11:49.000Z">
+<meta property="og:updated_time" content="2017-09-27T09:38:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kurento 入门篇">
-<meta name="twitter:description" content="Kurento 入门篇">
+<meta name="twitter:title" content="Ubuntu静态IP地址设置">
+<meta name="twitter:description" content="Ubuntu14.04虚拟机静态IP设置做好了系统之后，配置静态IP废了不少周折，总结一下： 查看Ubuntu网卡命令 ifconfig -a  在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传 在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口） 在服务器上 ifconfig 会只显示lo，这说明其他四块网卡没">
 
     
     <link rel="alternative" href="/atom.xml" title="lincoln&#39;s blog" type="application/atom+xml">
@@ -80,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/22/Kurento/" title="Kurento 入门篇" itemprop="url">Kurento 入门篇</a>
+      <a href="/2017/09/27/Ubuntu静态IP地址设置/" title="Ubuntu静态IP地址设置" itemprop="url">Ubuntu静态IP地址设置</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="lincoln" target="_blank" itemprop="author">lincoln</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-22T06:04:35.000Z" itemprop="datePublished"> 发表于 2017-09-22</time>
+    <time datetime="2017-09-27T09:12:41.000Z" itemprop="datePublished"> 发表于 2017-09-27</time>
     
   </p>
 </header>
@@ -96,35 +96,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kurento-简介"><span class="toc-number">1.</span> <span class="toc-text">Kurento 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-number">2.</span> <span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Element"><span class="toc-number">2.1.</span> <span class="toc-text">Media Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Pipeline"><span class="toc-number">2.2.</span> <span class="toc-text">Media Pipeline</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#词汇表"><span class="toc-number">4.</span> <span class="toc-text">词汇表</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu14-04虚拟机静态IP设置"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu14.04虚拟机静态IP设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看Ubuntu网卡命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看Ubuntu网卡命令</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="Kurento-简介"><a href="#Kurento-简介" class="headerlink" title="Kurento 简介"></a>Kurento 简介</h1><blockquote>
-<p>Kurento 是一个 WebRTC 媒体服务器和一套客户端 API</p>
+		<h1 id="Ubuntu14-04虚拟机静态IP设置"><a href="#Ubuntu14-04虚拟机静态IP设置" class="headerlink" title="Ubuntu14.04虚拟机静态IP设置"></a>Ubuntu14.04虚拟机静态IP设置</h1><p>做好了系统之后，配置静态IP废了不少周折，总结一下：</p>
+<h2 id="查看Ubuntu网卡命令"><a href="#查看Ubuntu网卡命令" class="headerlink" title="查看Ubuntu网卡命令"></a>查看Ubuntu网卡命令</h2><blockquote>
+<p>ifconfig -a</p>
 </blockquote>
-<p>&ensp;&ensp;&ensp;&ensp;Kurento 简化了对 WWW 和智能手机平台的高级视频应用的开发。Kurento 的功能包括视听流的群组通信，代码转换，录​​音，混音，广播和路由。</p>
-<p>&ensp;&ensp;&ensp;&ensp;Kurento 还提供涉及计算机视觉，视频索引，增强现实和语音分析的高级媒体处理能力。Kurento 模块化架构简化了第三方媒体处理算法（即语音识别，情感分析，人脸识别等）的集成，应用程序开发人员可以将其视为 Kurento 内置功能的其余部分。</p>
-<h1 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h1><blockquote>
-<p>KMS 是 Kurento Media Server 的缩写，它是 Kurento 的核心要素，负责媒体传输，处理，加载和录制</p>
-</blockquote>
-<p>KMS 基于 <a href="https://gstreamer.freedesktop.org/" target="_blank" rel="external">GStreamer</a> 的低级技术实现，以优化资源消耗。它提供以下功能：</p>
-<ol>
-<li>网络流式传输协议，包括 HTTP，<a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a> 和 <a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a></li>
-<li>支持媒体混合和媒体路由/调度的组通信（ <a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a> 和 <a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a> 功能）</li>
-<li>对计算机视觉和增强现实滤波器的通用支持</li>
-<li>媒体存储支持 WebM 和 MP4 的写入操作，并 以 GStreamer 支持的所有格式播放</li>
-<li>由 GStreamer 支持的任何编解码器之间的自动媒体转码，包括 VP8，H.264，H.263，AMR，OPUS，Speex，G.711 等</li>
-</ol>
-<h2 id="Media-Element"><a href="#Media-Element" class="headerlink" title="Media Element"></a>Media Element</h2><blockquote>
-<p>Media Element 是封装特定的媒体功能的模块</p>
-</blockquote>
-<h2 id="Media-Pipeline"><a href="#Media-Pipeline" class="headerlink" title="Media Pipeline"></a>Media Pipeline</h2><blockquote>
-<p>Media Pipeline 是一组 Media Element，其中由一个元素（源）产生的输出流被注入到一个或多个其他元素输入流中</p>
-</blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://doc-kurento.readthedocs.io/en/latest/index.html" target="_blank" rel="external">Kurento 官方文档</a></p>
-<h1 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h1><p><a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a>：多点会议单元<br><a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a>：选择性转发单元<br><a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a>：实时传输协议<br><a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a>：网页实时通讯<br><a href="https://webrtcglossary.com/ice/" target="_blank" rel="external">ICE</a>：交互式连接建立</p>
-<p>[8]<a href="https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png" target="_blank" rel="external">https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png</a></p>
+<p>在桌面版Ubuntu上会显示出：eth0 和 lo  lo是本地回传</p>
+<p>在服务器版Ubuntu上会显示出：em1、em2、em3、em4、lo 一共是4个网卡（1234分别对应4个以太网口）</p>
+<p>在服务器上 ifconfig 会只显示lo，这说明其他四块网卡没有被加载，执行命令：ifconfig em1 up 加载网卡<br> ifconfig em1 down 卸载网卡<br>加载网卡后，执行ifconfig 就会看到em1网卡被加载进来了，然后进行配置网卡</p>
+<p>在虚拟机和服务器配置是这样的： </p>
+<p>配置静态ip地址:<br>$ sudo vim /etc/network/interfaces<br>原有内容只有如下两行：</p>
+<p>auto lo<br>iface lo inet loopback<br>向末尾追加以下内容：</p>
+<p>auto eth0（em1）<br>iface eth0（em1） inet static<br>address 192.168.1.5  IP地址<br>gateway 192.168.1.1    网关<br>netmask 255.255.255.0  网络掩码<br>network 192.168.1.0 网络地址<br>broadcast 192.168.1.255  广播</p>
+<p>dns-nameservers 192.168.1.1 8.8.8.8   （服务器和虚拟机都是这样配置的）固定DNS域名服务</p>
+<p>如果多个dns：<br>dns-nameservers X.X.X.X  Y.Y.Y.Y  Z.Z.Z.Z</p>
+<p>设置固定DNS（域名服务，没有就不能解析域名，就不能上网，只能ping通 IP地址）</p>
+<p>设置固定DNS还有另外一种方法，有点麻烦</p>
+<p>另一种方法：<br>创建/修改下面的文件 sudo vim /etc/resolvconf/resolv.conf.d/base<br>添加下面内容：</p>
+<p>nameserver 8.8.8.8<br>nameserver 8.8.4.4 （解析域名的地址，可以用别的）</p>
+<p>修改好保存，然后执行：<br>resolvconf -u</p>
+<p>重启网络<br>$ sudo /etc/init.d/networking restart  或 sudo ifdown eth0（em1）&amp;&amp; sudo ifup eth0（em1）</p>
+<p>注意：如果Ubuntu系统采用的是desktop版，由于desktop版安装了NetworkManager，修改完interfaces文档中的内容后，不会生效。需要先修改 /etc/NetworkManager/NetworkManager.conf 文档中的managed参数，使之为true，并重启系统， 然后再修改 /etc/network/interfaces 文件，设置静态IP。这是桌面版和服务器版的不同之处</p>
+<p>最让我头疼的是这早就配置好了，服务器上就是ping不同局域网，而虚拟机上就能ping通，同样的配置让自己搞了一天，后来换一换服务器后面的网口，瞬间就好用了，多么简单的问题，有种欲哭无泪的感觉</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -132,13 +128,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/实时通讯/">实时通讯</a>
+  <a class="article-category-link" href="/categories/Ubuntu/">Ubuntu</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Kurento/">Kurento</a><a href="/tags/WebSocket/">WebSocket</a><a href="/tags/WebRTC/">WebRTC</a>
+  <span></span> <a href="/tags/Ubuntu/">Ubuntu</a><a href="/tags/静态IP设置/">静态IP设置</a>
   </div>
 
 </div>
@@ -147,7 +143,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/22/Kurento/" data-title="Kurento 入门篇 | lincoln&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/27/Ubuntu静态IP地址设置/" data-title="Ubuntu静态IP地址设置 | lincoln&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -160,19 +156,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/22/openVidu/" title="openVidu 入门篇">
-  <strong>上一篇：</strong><br/>
-  <span>
-  openVidu 入门篇</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/09/22/WebRTC/"  title="WebRTC 入门篇">
+<a href="/2017/09/22/openVidu入门篇/"  title="openVidu入门篇">
  <strong>下一篇：</strong><br/> 
- <span>WebRTC 入门篇
+ <span>openVidu入门篇
 </span>
 </a>
 </div>
@@ -188,7 +176,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kurento-简介"><span class="toc-number">1.</span> <span class="toc-text">Kurento 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-number">2.</span> <span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Element"><span class="toc-number">2.1.</span> <span class="toc-text">Media Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Pipeline"><span class="toc-number">2.2.</span> <span class="toc-text">Media Pipeline</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#词汇表"><span class="toc-number">4.</span> <span class="toc-text">词汇表</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu14-04虚拟机静态IP设置"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu14.04虚拟机静态IP设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看Ubuntu网卡命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看Ubuntu网卡命令</span></a></li></ol></li></ol>
  
   </div>
 
@@ -203,6 +191,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/Ubuntu/" title="Ubuntu">Ubuntu<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/实时通讯/" title="实时通讯">实时通讯<sup>4</sup></a></li>
@@ -227,6 +219,14 @@
 		
 			
 				<li><a href="/tags/Kurento/" title="Kurento">Kurento<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ubuntu/" title="Ubuntu">Ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/静态IP设置/" title="静态IP设置">静态IP设置<sup>1</sup></a></li>
 			
 		
 			

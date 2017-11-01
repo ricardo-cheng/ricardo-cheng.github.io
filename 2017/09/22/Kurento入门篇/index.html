@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>openVidu 入门篇 | lincoln&#39;s blog</title>
+    <title>Kurento入门篇 | lincoln&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="lincoln">
     
 
     
-    <meta name="description" content="openVidu 入门篇">
-<meta name="keywords" content="Kurento,WebSocket,WebRTC,openVidu">
+    <meta name="description" content="Kurento入门篇">
+<meta name="keywords" content="Kurento,WebSocket,WebRTC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="openVidu 入门篇">
-<meta property="og:url" content="http://yoursite.com/2017/09/22/openVidu/index.html">
+<meta property="og:title" content="Kurento入门篇">
+<meta property="og:url" content="http://yoursite.com/2017/09/22/Kurento入门篇/index.html">
 <meta property="og:site_name" content="lincoln&#39;s blog">
-<meta property="og:description" content="openVidu 入门篇">
+<meta property="og:description" content="Kurento入门篇">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-26T09:47:03.000Z">
+<meta property="og:updated_time" content="2017-09-27T09:15:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="openVidu 入门篇">
-<meta name="twitter:description" content="openVidu 入门篇">
+<meta name="twitter:title" content="Kurento入门篇">
+<meta name="twitter:description" content="Kurento入门篇">
 
     
     <link rel="alternative" href="/atom.xml" title="lincoln&#39;s blog" type="application/atom+xml">
@@ -80,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/22/openVidu/" title="openVidu 入门篇" itemprop="url">openVidu 入门篇</a>
+      <a href="/2017/09/22/Kurento入门篇/" title="Kurento入门篇" itemprop="url">Kurento入门篇</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="lincoln" target="_blank" itemprop="author">lincoln</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-22T06:28:30.000Z" itemprop="datePublished"> 发表于 2017-09-22</time>
+    <time datetime="2017-09-22T06:04:35.000Z" itemprop="datePublished"> 发表于 2017-09-22</time>
     
   </p>
 </header>
@@ -96,11 +96,36 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kurento-简介"><span class="toc-number">1.</span> <span class="toc-text">Kurento 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-number">2.</span> <span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Element"><span class="toc-number">2.1.</span> <span class="toc-text">Media Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Pipeline"><span class="toc-number">2.2.</span> <span class="toc-text">Media Pipeline</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#词汇表"><span class="toc-number">4.</span> <span class="toc-text">词汇表</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h1 id="Kurento-简介"><a href="#Kurento-简介" class="headerlink" title="Kurento 简介"></a>Kurento 简介</h1><blockquote>
+<p>Kurento 是一个 WebRTC 媒体服务器和一套客户端 API</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;Kurento 简化了对 WWW 和智能手机平台的高级视频应用的开发。Kurento 的功能包括视听流的群组通信，代码转换，录​​音，混音，广播和路由。</p>
+<p>&ensp;&ensp;&ensp;&ensp;Kurento 还提供涉及计算机视觉，视频索引，增强现实和语音分析的高级媒体处理能力。Kurento 模块化架构简化了第三方媒体处理算法（即语音识别，情感分析，人脸识别等）的集成，应用程序开发人员可以将其视为 Kurento 内置功能的其余部分。</p>
+<h1 id="KMS"><a href="#KMS" class="headerlink" title="KMS"></a>KMS</h1><blockquote>
+<p>KMS 是 Kurento Media Server 的缩写，它是 Kurento 的核心要素，负责媒体传输，处理，加载和录制</p>
+</blockquote>
+<p>KMS 基于 <a href="https://gstreamer.freedesktop.org/" target="_blank" rel="external">GStreamer</a> 的低级技术实现，以优化资源消耗。它提供以下功能：</p>
+<ol>
+<li>网络流式传输协议，包括 HTTP，<a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a> 和 <a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a></li>
+<li>支持媒体混合和媒体路由/调度的组通信（ <a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a> 和 <a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a> 功能）</li>
+<li>对计算机视觉和增强现实滤波器的通用支持</li>
+<li>媒体存储支持 WebM 和 MP4 的写入操作，并 以 GStreamer 支持的所有格式播放</li>
+<li>由 GStreamer 支持的任何编解码器之间的自动媒体转码，包括 VP8，H.264，H.263，AMR，OPUS，Speex，G.711 等</li>
+</ol>
+<h2 id="Media-Element"><a href="#Media-Element" class="headerlink" title="Media Element"></a>Media Element</h2><blockquote>
+<p>Media Element 是封装特定的媒体功能的模块</p>
+</blockquote>
+<h2 id="Media-Pipeline"><a href="#Media-Pipeline" class="headerlink" title="Media Pipeline"></a>Media Pipeline</h2><blockquote>
+<p>Media Pipeline 是一组 Media Element，其中由一个元素（源）产生的输出流被注入到一个或多个其他元素输入流中</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://doc-kurento.readthedocs.io/en/latest/index.html" target="_blank" rel="external">Kurento 官方文档</a></p>
+<h1 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h1><p><a href="https://webrtcglossary.com/mcu/" target="_blank" rel="external">MCU</a>：多点会议单元<br><a href="https://webrtcglossary.com/sfu/" target="_blank" rel="external">SFU</a>：选择性转发单元<br><a href="https://webrtcglossary.com/rtp/" target="_blank" rel="external">RTP</a>：实时传输协议<br><a href="https://webrtcglossary.com/webrtc/" target="_blank" rel="external">WebRTC</a>：网页实时通讯<br><a href="https://webrtcglossary.com/ice/" target="_blank" rel="external">ICE</a>：交互式连接建立</p>
+<p>[8]<a href="https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png" target="_blank" rel="external">https://doc-kurento.readthedocs.io/en/latest/_images/kurento-clients-connection.png</a></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -113,7 +138,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Kurento/">Kurento</a><a href="/tags/WebSocket/">WebSocket</a><a href="/tags/WebRTC/">WebRTC</a><a href="/tags/openVidu/">openVidu</a>
+  <span></span> <a href="/tags/Kurento/">Kurento</a><a href="/tags/WebSocket/">WebSocket</a><a href="/tags/WebRTC/">WebRTC</a>
   </div>
 
 </div>
@@ -122,7 +147,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/22/openVidu/" data-title="openVidu 入门篇 | lincoln&#39;s blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/22/Kurento入门篇/" data-title="Kurento入门篇 | lincoln&#39;s blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,11 +160,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/09/22/openVidu入门篇/" title="openVidu入门篇">
+  <strong>上一篇：</strong><br/>
+  <span>
+  openVidu入门篇</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2017/09/22/Kurento/"  title="Kurento 入门篇">
+<a href="/2017/09/22/WebRTC入门篇/"  title="WebRTC入门篇">
  <strong>下一篇：</strong><br/> 
- <span>Kurento 入门篇
+ <span>WebRTC入门篇
 </span>
 </a>
 </div>
@@ -155,7 +188,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kurento-简介"><span class="toc-number">1.</span> <span class="toc-text">Kurento 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#KMS"><span class="toc-number">2.</span> <span class="toc-text">KMS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Element"><span class="toc-number">2.1.</span> <span class="toc-text">Media Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-Pipeline"><span class="toc-number">2.2.</span> <span class="toc-text">Media Pipeline</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#词汇表"><span class="toc-number">4.</span> <span class="toc-text">词汇表</span></a></li></ol>
  
   </div>
 
@@ -170,6 +203,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/Ubuntu/" title="Ubuntu">Ubuntu<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/实时通讯/" title="实时通讯">实时通讯<sup>4</sup></a></li>
@@ -194,6 +231,14 @@
 		
 			
 				<li><a href="/tags/Kurento/" title="Kurento">Kurento<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Ubuntu/" title="Ubuntu">Ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/静态IP设置/" title="静态IP设置">静态IP设置<sup>1</sup></a></li>
 			
 		
 			
